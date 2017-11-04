@@ -39,7 +39,7 @@ export default {
     return {
       videoid: '-ZwGeYu2pOQ',
       current: 0,
-      player: {},
+      player: null,
       srt: {},
       subtitle_ja: '',
       subtitle_en: '',
@@ -48,7 +48,9 @@ export default {
   },
   methods: {
     loadYoutube: function () {
-      this.player = YouTubePlayer('video-player')
+      if (!this.player) {
+        this.player = YouTubePlayer('video-player')
+      }
       this.player.loadVideoById(this.videoid)
       this.player.stopVideo()
       this.player.on('ready', () => { this.update() })
