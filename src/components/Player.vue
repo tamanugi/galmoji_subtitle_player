@@ -119,6 +119,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@font-face {
+  font-family: 'mikiyu';
+  src: url(/static/mikiyu-newpenji-p.ttf);
+}
 h1, h2 {
   font-weight: normal;
 }
@@ -163,7 +167,7 @@ a {
   color: white;
   fill: rgb(255, 255, 255);
   background: rgba(8, 8, 8, 0.74902);
-  font-family: "Nico Moji", Roboto, "Arial Unicode Ms", Arial, Helvetica, Verdana, "PT Sans Caption", sans-serif;
+  font-family: "mikiyu", "Nico Moji", Roboto, "Arial Unicode Ms", Arial, Helvetica, Verdana, "PT Sans Caption", sans-serif;
 }
 
 #player-area {
