@@ -119,10 +119,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@font-face {
-  font-family: 'mikiyu';
-  src: url(/static/mikiyu-newpenji-p.ttf);
-}
 h1, h2 {
   font-weight: normal;
 }
