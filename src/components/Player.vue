@@ -7,11 +7,11 @@
           <span class="subtitle">{{ subtitle_ja }}</span>
         </span>
       </div>
-      <div class="caption-window">
+      <!-- <div class="caption-window">
         <span class="captions">
           <span class="subtitle">{{ subtitle_en }}</span>
         </span>
-      </div>
+      </div> -->
     </div>
     <div class="input-group videoid-input-group">
       <span class="input-group-addon" >https://www.youtube.com/watch?v=</span>
@@ -23,6 +23,7 @@
       </span>
     </div>
     <div v-if="debug">{{ current }}</div>
+    <div v-if="debug">{{ srt['ja'] }}</div>
   </div>
 </template>
 
@@ -30,18 +31,19 @@
 import YouTubePlayer from 'youtube-player'
 import http from 'http'
 import {parseString} from 'xml2js'
+import galmoji from '../lib/galmoji'
 
 export default {
   name: 'player',
   data () {
     return {
-      videoid: '-sGiE10zNQM',
+      videoid: '-ZwGeYu2pOQ',
       current: 0,
       player: {},
       srt: {},
       subtitle_ja: '',
       subtitle_en: '',
-      debug: false
+      debug: true
     }
   },
   methods: {
@@ -51,8 +53,9 @@ export default {
       this.player.stopVideo()
       this.player.on('ready', () => { this.update() })
       this.fetchLangSubtitle('ja')
-      this.fetchLangSubtitle('en')
+      // this.fetchLangSubtitle('en')
     },
+    // YOUTUBE API を用いて字幕を取得
     fetchLangSubtitle: function (lang) {
       let subtitleUrl = `https://www.youtube.com/api/timedtext?fmt=srv3&lang=${lang}&v=${this.videoid}`
       console.log(subtitleUrl)
@@ -67,7 +70,15 @@ export default {
         res.on('end', (res) => {
           parseString(body, (err, result) => {
             if (!err) console.dir(result)
-            this.srt[lang] = result.timedtext.body[0].p
+            let srtList = result.timedtext.body[0].p || []
+
+            // 取得した字幕をギャル文字に変換
+            this.srt[lang] = srtList.map(item => {
+              return {
+                '_': galmoji(item['_']),
+                '$': item['$']
+              }
+            })
           })
         })
       }).on('error', (e) => {
@@ -81,7 +92,7 @@ export default {
           this.current = time
 
           this.subtitle_ja = this.getSubtitle('ja')
-          this.subtitle_en = this.getSubtitle('en')
+          // this.subtitle_en = this.getSubtitle('en')
         })
       }
       setTimeout(this.update, 50)
@@ -138,7 +149,6 @@ a {
 .caption-window-ja {
   position: absolute;
   text-align: center;
-  bottom: 10%;
   z-index: 35;
 }
 
