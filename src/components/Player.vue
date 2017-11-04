@@ -163,7 +163,7 @@ a {
   color: white;
   fill: rgb(255, 255, 255);
   background: rgba(8, 8, 8, 0.74902);
-  font-family: Roboto, "Arial Unicode Ms", Arial, Helvetica, Verdana, "PT Sans Caption", sans-serif;
+  font-family: "Nico Moji", Roboto, "Arial Unicode Ms", Arial, Helvetica, Verdana, "PT Sans Caption", sans-serif;
 }
 
 #player-area {
