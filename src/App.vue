@@ -2,15 +2,18 @@
   <div id="app">
     <app-title></app-title>
     <router-view></router-view>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
 import AppTitle from './components/AppTitle'
+import AppFooter from './components/AppFooter'
 export default {
   name: 'app',
   components: {
-    AppTitle
+    AppTitle,
+    AppFooter
   }
 }
 </script>
