@@ -140,8 +140,8 @@ a {
 .caption-window {
   position: absolute;
   text-align: center;
-  width: 640px;
-  margin: 0 auto;
+  width: 480px;
+  margin: 0 80px;
   bottom: 2%;
   z-index: 35;
 }
@@ -157,7 +157,7 @@ a {
 }
 
 .subtitle {
-  font-size: 16px;
+  font-size: 32px;
   bottom: 0px;
   border-radius: 2px;
   color: white;
