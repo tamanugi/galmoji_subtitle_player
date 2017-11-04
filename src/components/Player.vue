@@ -159,7 +159,7 @@ a {
 }
 
 .subtitle {
-  font-size: 32px;
+  font-size: 24px;
   bottom: 0px;
   border-radius: 2px;
   color: white;
