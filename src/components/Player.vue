@@ -139,6 +139,10 @@ a {
   color: #42b983;
 }
 
+.player {
+  margin-top: 40px;
+}
+
 .caption-window {
   position: absolute;
   text-align: center;

@@ -16,4 +16,8 @@ h2 {
   font-family: "mikiyu", "Nico Moji"
 }
 
+div {
+  margin-top: 40px;
+}
+
 </style>
