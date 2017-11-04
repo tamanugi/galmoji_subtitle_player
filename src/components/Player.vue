@@ -43,7 +43,7 @@ export default {
       srt: {},
       subtitle_ja: '',
       subtitle_en: '',
-      debug: true
+      debug: false
     }
   },
   methods: {
