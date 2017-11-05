@@ -15,7 +15,6 @@ export default {
 <style scoped>
 div {
   position: absolute;
-  bottom: 0;
   width: 100%;
 }
 </style>
