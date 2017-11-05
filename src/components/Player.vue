@@ -4,7 +4,7 @@
       <div id="video-player"></div>
       <div class="caption-window caption-window-ja">
         <span class="captions">
-          <span class="subtitle">{{ subtitle_ja }}</span>
+          <span class="subtitle">{{ subtitle }}</span>
         </span>
       </div>
       <!-- <div class="caption-window">
@@ -41,9 +41,12 @@ export default {
       current: 0,
       player: null,
       srt: {},
-      subtitle_ja: '',
-      subtitle_en: '',
       debug: false
+    }
+  },
+  computed: {
+    subtitle () {
+      return this.$store.state.subtitle
     }
   },
   methods: {
@@ -93,7 +96,8 @@ export default {
           time = Math.floor(time * 1000)
           this.current = time
 
-          this.subtitle_ja = this.getSubtitle('ja')
+          let subtitleJa = this.getSubtitle('ja')
+          this.$store.commit('setSubtitle', subtitleJa)
           // this.subtitle_en = this.getSubtitle('en')
         })
       }
@@ -101,9 +105,10 @@ export default {
     },
     getSubtitle: function (lang) {
       let subtitle = ''
-      if (this.srt[lang]) {
-        for (let i = 0; i < this.srt[lang].length; i++) {
-          let sub = this.srt[lang][i]
+      let srt = this.srt[lang]
+      if (srt) {
+        for (let i = 0; i < srt.length; i++) {
+          let sub = srt[i]
           let startTime = Number(sub.$.t)
           let endTime = startTime + Number(sub.$.d)
           if (startTime <= this.current && this.current <= endTime) {
