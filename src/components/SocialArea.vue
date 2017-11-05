@@ -3,7 +3,7 @@
     <div class="socialButtons">
       <div class="socialButtons_twitter">
         <a :href="tweetUrl" rel="nofollow" target="_blank">
-        <img src="/static/galmoji_twitter_icon.png" >
+        <img src="../assets/galmoji_twitter_icon.png" >
         </a>
       </div>
       <div class="socialButtons_hatena">
@@ -12,7 +12,7 @@
         </a>
       </div>
     </div>
-      <img class="shareyoro-img" src="/static/share_yoro.png" >
+      <img class="shareyoro-img" src="../assets/share_yoro.png" >
   </div>
 </template>
 
