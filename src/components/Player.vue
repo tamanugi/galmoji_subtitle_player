@@ -1,5 +1,5 @@
 <template>
-  <div class="player">
+  <div class="player col-sm-6">
     <div id="player-area">
       <div id="video-player"></div>
       <div class="caption-window caption-window-ja">
@@ -142,10 +142,6 @@ li {
 
 a {
   color: #42b983;
-}
-
-.player {
-  margin-top: 40px;
 }
 
 .caption-window {

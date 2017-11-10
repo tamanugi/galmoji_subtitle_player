@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="col-sm-3">
     <div class="socialButtons">
       <div class="socialButtons_twitter">
         <a :href="tweetUrl" rel="nofollow" target="_blank">
@@ -34,14 +34,14 @@ export default {
 </script>
 
 <style scoped>
-.root {
+/* .root {
   width: 100%;
   margin-top: 40px;
 }
 
 .container {
   margin: 0 auto;
-}
+} */
 
 .socialButtons_twitter, .socialButtons_hatena {
   display: inline-block;

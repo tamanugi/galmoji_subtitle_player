@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <app-title></app-title>
-    <router-view></router-view>
-    <social-area></social-area>
+    <div class="row app_container">
+      <social-area></social-area>
+      <router-view></router-view>
+      <social-area></social-area>
+    </div>
     <app-footer></app-footer>
   </div>
 </template>
@@ -29,5 +32,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.app_container {
+  margin-top: 120px;
+  min-height: calc(100vh - 250px);
 }
 </style>
