@@ -7,7 +7,7 @@
         </a>
       </div>
       <div class="socialButtons_hatena">
-        <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加">
+        <a href="http://b.hatena.ne.jp/entry/s/tamanugi.github.io/galmoji_subtitle_player/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-counter" title="このエントリーをはてなブックマークに追加">
           <img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" />
         </a>
       </div>
