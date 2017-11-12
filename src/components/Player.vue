@@ -17,7 +17,7 @@
       <span class="input-group-addon" >https://www.youtube.com/watch?v=</span>
       <input type="text" class="form-control" aria-describedby="basic-addon3" v-model="videoid">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" @click="loadYoutube">
+        <button class="btn btn-default" type="button" @click="clickPlayButton">
           <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
           さﾚヽせﾚヽ
         </button>
@@ -61,16 +61,29 @@ export default {
     }
   },
   methods: {
+    clickPlayButton: function () {
+      // Youtube Player の準備
+      this.loadYoutube()
+
+      // 字幕の取得
+      this.fetchLangSubtitle('ja')
+
+      // 動画タイトルの取得
+      this.getVideoTitle()
+
+      // 再生
+      this.playYoutube()
+    },
     loadYoutube: function () {
       if (!this.player) {
         this.player = YouTubePlayer('video-player')
       }
       this.player.loadVideoById(this.videoid)
-      this.player.stopVideo()
       this.player.on('ready', () => { this.update() })
-      this.fetchLangSubtitle('ja')
-      this.getVideoTitle()
-      // this.fetchLangSubtitle('en')
+      this.player.stopVideo()
+    },
+    playYoutube: function () {
+      this.player.playVideo()
     },
     // YOUTUBE DATA API を用いて動画タイトルを取得
     getVideoTitle: function () {
@@ -144,7 +157,15 @@ export default {
   mounted () {
     if (this.$route.query.v) {
       this.$store.commit('setVideoid', this.$route.query.v)
+
+      // youtube playerの準備
       this.loadYoutube()
+
+      // 字幕の取得
+      this.fetchLangSubtitle('ja')
+
+      // 動画タイトルの取得
+      this.getVideoTitle()
     }
   }
 
