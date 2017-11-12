@@ -2,7 +2,7 @@
   <div id="app">
     <app-title></app-title>
     <div class="row app_container">
-      <social-area></social-area>
+      <manual></manual>
       <router-view></router-view>
       <social-area></social-area>
     </div>
@@ -14,13 +14,15 @@
 import AppTitle from './components/AppTitle'
 import AppFooter from './components/AppFooter'
 import SocialArea from './components/SocialArea'
+import Manual from './components/Manual'
 
 export default {
   name: 'app',
   components: {
     AppTitle,
     AppFooter,
-    SocialArea
+    SocialArea,
+    Manual
   }
 }
 </script>
