@@ -31,7 +31,7 @@ export default {
       let encodedUrl = encodeURI(url)
       let tweetText = encodeURI(`${this.$store.state.subtitle} / ${this.$store.state.videoTitle}`)
       let tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&hashtags=${hashtag}&url=${encodedUrl}`
-      console.log(tweetUrl)
+
       return tweetUrl
     }
   }

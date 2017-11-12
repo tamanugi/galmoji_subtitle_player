@@ -91,13 +91,15 @@ export default {
         .json
         .then(json => {
           this.$store.commit('setVideTitle', json.items[0].snippet.title)
-          console.log('setVideTitle', json.items[0].snippet.title)
         })
     },
     // YOUTUBE API を用いて字幕を取得
     fetchLangSubtitle: function (lang) {
       let subtitleUrl = `https://www.youtube.com/api/timedtext?fmt=srv3&lang=${lang}&v=${this.$store.state.videoid}`
-      console.log(subtitleUrl)
+
+      // 字幕初期化
+      this.srt = {}
+
       http.get(subtitleUrl, (res) => {
         let body = ''
         res.setEncoding('utf8')
