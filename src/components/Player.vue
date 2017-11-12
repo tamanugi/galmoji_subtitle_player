@@ -40,7 +40,6 @@ export default {
   name: 'player',
   data () {
     return {
-      videoid: this.$route.query.v || 'NasyGUeNMTs',
       current: this.$route.query.t || 0,
       player: null,
       srt: {},
@@ -50,6 +49,14 @@ export default {
   computed: {
     subtitle () {
       return this.$store.state.subtitle
+    },
+    videoid: {
+      get () {
+        return this.$store.state.videoid
+      },
+      set (newValue) {
+        this.$store.commit('setVideoid', newValue)
+      }
     }
   },
   methods: {
@@ -66,7 +73,7 @@ export default {
     },
     // YOUTUBE DATA API を用いて動画タイトルを取得
     getVideoTitle: function () {
-      r2(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${this.videoid}&key=${key}`)
+      r2(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${this.$store.state.videoid}&key=${key}`)
         .json
         .then(json => {
           this.$store.commit('setVideTitle', json.items[0].snippet.title)
@@ -75,7 +82,7 @@ export default {
     },
     // YOUTUBE API を用いて字幕を取得
     fetchLangSubtitle: function (lang) {
-      let subtitleUrl = `https://www.youtube.com/api/timedtext?fmt=srv3&lang=${lang}&v=${this.videoid}`
+      let subtitleUrl = `https://www.youtube.com/api/timedtext?fmt=srv3&lang=${lang}&v=${this.$store.state.videoid}`
       console.log(subtitleUrl)
       http.get(subtitleUrl, (res) => {
         let body = ''
@@ -131,6 +138,11 @@ export default {
         }
       }
       return subtitle
+    }
+  },
+  mounted () {
+    if (this.$route.query.v) {
+      this.$store.commit('setVideoid', this.$route.query.v)
     }
   }
 

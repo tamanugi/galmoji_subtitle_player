@@ -22,9 +22,15 @@ export default {
   computed: {
     tweetUrl () {
       let hashtag = encodeURI('ぎゃるもじまくぷれ〜や〜')
-      let url = encodeURI(location.href)
+
+      let url = location.href
+      if (this.$store.state.videoid) {
+        url = url.split('?')[0]
+        url = `${url}?v=${this.$store.state.videoid}`
+      }
+      let encodedUrl = encodeURI(url)
       let tweetText = encodeURI(`${this.$store.state.subtitle} / ${this.$store.state.videoTitle}`)
-      let tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&hashtags=${hashtag}&url=${url}`
+      let tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&hashtags=${hashtag}&url=${encodedUrl}`
       console.log(tweetUrl)
       return tweetUrl
     }
