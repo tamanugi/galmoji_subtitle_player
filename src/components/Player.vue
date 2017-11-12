@@ -40,7 +40,7 @@ export default {
   name: 'player',
   data () {
     return {
-      videoid: this.$route.query.videoid || 'NasyGUeNMTs',
+      videoid: this.$route.query.v || 'NasyGUeNMTs',
       current: this.$route.query.t || 0,
       player: null,
       srt: {},
