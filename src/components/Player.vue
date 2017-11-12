@@ -143,6 +143,7 @@ export default {
   mounted () {
     if (this.$route.query.v) {
       this.$store.commit('setVideoid', this.$route.query.v)
+      this.loadYoutube()
     }
   }
 
