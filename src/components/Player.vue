@@ -19,6 +19,7 @@
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" @click="loadYoutube">
           <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+          さﾚヽせﾚヽ
         </button>
       </span>
     </div>
