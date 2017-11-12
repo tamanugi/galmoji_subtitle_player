@@ -3,7 +3,7 @@
     <div class="socialButtons">
       <div class="socialButtons_twitter">
         <a :href="tweetUrl" rel="nofollow" target="_blank">
-        <img src="~assets/galmoji_twitter_icon.png" >
+        <img class="twitter_icon" src="~assets/galmoji_twitter_icon.png" >
         </a>
       </div>
       <div class="socialButtons_hatena">
@@ -60,5 +60,10 @@ export default {
 .shareyoro-img {
   width: 280px;
   height: 320px;
+}
+
+.twitter_icon {
+  width: 160px;
+  height: 20px;
 }
 </style>
