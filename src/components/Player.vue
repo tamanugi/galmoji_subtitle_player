@@ -32,13 +32,16 @@ import YouTubePlayer from 'youtube-player'
 import http from 'http'
 import {parseString} from 'xml2js'
 import galmoji from '../lib/galmoji'
+import r2 from 'r2'
+
+const key = 'AIzaSyCw7vhR-PVHXcKtSqrTdj9T44Hh4xmwv6U'
 
 export default {
   name: 'player',
   data () {
     return {
-      videoid: '-ZwGeYu2pOQ',
-      current: 0,
+      videoid: this.$route.query.videoid || 'NasyGUeNMTs',
+      current: this.$route.query.t || 0,
       player: null,
       srt: {},
       debug: false
@@ -58,7 +61,17 @@ export default {
       this.player.stopVideo()
       this.player.on('ready', () => { this.update() })
       this.fetchLangSubtitle('ja')
+      this.getVideoTitle()
       // this.fetchLangSubtitle('en')
+    },
+    // YOUTUBE DATA API を用いて動画タイトルを取得
+    getVideoTitle: function () {
+      r2(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${this.videoid}&key=${key}`)
+        .json
+        .then(json => {
+          this.$store.commit('setVideTitle', json.items[0].snippet.title)
+          console.log('setVideTitle', json.items[0].snippet.title)
+        })
     },
     // YOUTUBE API を用いて字幕を取得
     fetchLangSubtitle: function (lang) {

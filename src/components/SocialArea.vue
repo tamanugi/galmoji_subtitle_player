@@ -23,7 +23,7 @@ export default {
     tweetUrl () {
       let hashtag = encodeURI('ぎゃるもじまくぷれ〜や〜')
       let url = encodeURI(location.href)
-      let tweetText = encodeURI(this.$store.state.subtitle)
+      let tweetText = encodeURI(`${this.$store.state.subtitle} / ${this.$store.state.videoTitle}`)
       let tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&hashtags=${hashtag}&url=${url}`
       console.log(tweetUrl)
       return tweetUrl
