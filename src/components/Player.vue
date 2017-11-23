@@ -44,7 +44,8 @@ export default {
       current: this.$route.query.t || 0,
       player: null,
       srt: {},
-      debug: false
+      debug: false,
+      lang: ''
     }
   },
   computed: {
@@ -67,6 +68,7 @@ export default {
 
       // 字幕の取得
       this.fetchLangSubtitle('ja')
+      this.fetchLangSubtitle('en')
 
       // 動画タイトルの取得
       this.getVideoTitle()
@@ -111,6 +113,8 @@ export default {
         res.on('end', (res) => {
           parseString(body, (err, result) => {
             if (!err) console.dir(result)
+            if (!result) return
+            this.lang = lang
             let srtList = result.timedtext.body[0].p || []
 
             // 取得した字幕をギャル文字に変換
@@ -132,12 +136,16 @@ export default {
           time = Math.floor(time * 1000)
           this.current = time
 
-          let subtitleJa = this.getSubtitle('ja')
-          this.$store.commit('setSubtitle', subtitleJa)
-          // this.subtitle_en = this.getSubtitle('en')
+          let subtitleja = this.getSubtitle('ja')
+          let subtitleen = this.getSubtitle('en')
+          if (subtitleja) {
+            this.$store.commit('setSubtitle', subtitleja)
+          } else if (subtitleen) {
+            this.$store.commit('setSubtitle', subtitleen)
+          }
         })
       }
-      setTimeout(this.update, 50)
+      setTimeout(this.update, 100)
     },
     getSubtitle: function (lang) {
       let subtitle = ''
